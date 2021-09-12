@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SecondModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SecondModelStoreContainer">
+    <EntitySet Name="Employees" EntityType="SecondModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="SecondModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeeProject" EntityType="SecondModel.Store.EmployeeProject" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_EmployeeProject_Employee" Association="SecondModel.Store.FK_EmployeeProject_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeProject" EntitySet="EmployeeProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeProject_Project" Association="SecondModel.Store.FK_EmployeeProject_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="EmployeeProject" EntitySet="EmployeeProject" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeProject">
+    <Key>
+      <PropertyRef Name="Employees_Id" />
+      <PropertyRef Name="Projects_Id" />
+    </Key>
+    <Property Name="Employees_Id" Type="int" Nullable="false" />
+    <Property Name="Projects_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EmployeeProject_Employee">
+    <End Role="Employee" Type="SecondModel.Store.Employees" Multiplicity="1" />
+    <End Role="EmployeeProject" Type="SecondModel.Store.EmployeeProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeProject">
+        <PropertyRef Name="Employees_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeProject_Project">
+    <End Role="EmployeeProject" Type="SecondModel.Store.EmployeeProject" Multiplicity="*" />
+    <End Role="Project" Type="SecondModel.Store.Projects" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeProject">
+        <PropertyRef Name="Projects_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

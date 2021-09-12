@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginYoutubeIdentityExample", "LoginYoutubeIdentityExample\LoginYoutubeIdentityExample.csproj", "{F7A92976-A77B-4BED-9F19-14A1CBBAD0A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7A92976-A77B-4BED-9F19-14A1CBBAD0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A92976-A77B-4BED-9F19-14A1CBBAD0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A92976-A77B-4BED-9F19-14A1CBBAD0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A92976-A77B-4BED-9F19-14A1CBBAD0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7437196C-7D94-4975-8717-1463490A9D95}
+	EndGlobalSection
+EndGlobal
