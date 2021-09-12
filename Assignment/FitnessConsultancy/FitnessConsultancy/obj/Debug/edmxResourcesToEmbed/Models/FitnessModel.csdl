@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserExercises" Relationship="Model.AspNetUserAspNetUserExercise" FromRole="AspNetUser" ToRole="AspNetUserExercise" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="AspNetUserExercises" EntityType="Model.AspNetUserExercise" />
+    <EntitySet Name="Exercises" EntityType="Model.Exercise" />
+    <AssociationSet Name="AspNetUserAspNetUserExercise" Association="Model.AspNetUserAspNetUserExercise">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserExercise" EntitySet="AspNetUserExercises" />
+    </AssociationSet>
+    <AssociationSet Name="ExerciseAspNetUserExercise" Association="Model.ExerciseAspNetUserExercise">
+      <End Role="Exercise" EntitySet="Exercises" />
+      <End Role="AspNetUserExercise" EntitySet="AspNetUserExercises" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUserExercise">
+    <Key>
+      <PropertyRef Name="AspNetUserId" />
+      <PropertyRef Name="ExerciseExerciseId" />
+    </Key>
+    <NavigationProperty Name="AspNetUser" Relationship="Model.AspNetUserAspNetUserExercise" FromRole="AspNetUserExercise" ToRole="AspNetUser" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Exercise" Relationship="Model.ExerciseAspNetUserExercise" FromRole="AspNetUserExercise" ToRole="Exercise" />
+    <Property Name="ExerciseExerciseId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exercise">
+    <Key>
+      <PropertyRef Name="ExerciseId" />
+    </Key>
+    <Property Name="ExerciseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExerciseName" Type="String" Nullable="false" />
+    <Property Name="ExerciseDesc" Type="String" Nullable="false" />
+    <Property Name="ExerciseCategory" Type="String" Nullable="false" />
+    <NavigationProperty Name="AspNetUserExercises" Relationship="Model.ExerciseAspNetUserExercise" FromRole="Exercise" ToRole="AspNetUserExercise" />
+  </EntityType>
+  <Association Name="AspNetUserAspNetUserExercise">
+    <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="Model.AspNetUserExercise" Role="AspNetUserExercise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserExercise">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExerciseAspNetUserExercise">
+    <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
+    <End Type="Model.AspNetUserExercise" Role="AspNetUserExercise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exercise">
+        <PropertyRef Name="ExerciseId" />
+      </Principal>
+      <Dependent Role="AspNetUserExercise">
+        <PropertyRef Name="ExerciseExerciseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

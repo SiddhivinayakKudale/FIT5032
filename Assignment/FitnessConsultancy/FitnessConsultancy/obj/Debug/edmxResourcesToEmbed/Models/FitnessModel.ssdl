@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="AspNetUsers" EntityType="Model.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserExercises" EntityType="Model.Store.AspNetUserExercises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Exercises" EntityType="Model.Store.Exercises" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AspNetUserAspNetUserExercise" Association="Model.Store.AspNetUserAspNetUserExercise">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserExercise" EntitySet="AspNetUserExercises" />
+    </AssociationSet>
+    <AssociationSet Name="ExerciseAspNetUserExercise" Association="Model.Store.ExerciseAspNetUserExercise">
+      <End Role="Exercise" EntitySet="Exercises" />
+      <End Role="AspNetUserExercise" EntitySet="AspNetUserExercises" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="AspNetUserExercises">
+    <Key>
+      <PropertyRef Name="AspNetUserId" />
+      <PropertyRef Name="ExerciseExerciseId" />
+    </Key>
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ExerciseExerciseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exercises">
+    <Key>
+      <PropertyRef Name="ExerciseId" />
+    </Key>
+    <Property Name="ExerciseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExerciseName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseDesc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseCategory" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="AspNetUserAspNetUserExercise">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUserExercise" Type="Model.Store.AspNetUserExercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserExercise">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExerciseAspNetUserExercise">
+    <End Role="Exercise" Type="Model.Store.Exercises" Multiplicity="1" />
+    <End Role="AspNetUserExercise" Type="Model.Store.AspNetUserExercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exercise">
+        <PropertyRef Name="ExerciseId" />
+      </Principal>
+      <Dependent Role="AspNetUserExercise">
+        <PropertyRef Name="ExerciseExerciseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

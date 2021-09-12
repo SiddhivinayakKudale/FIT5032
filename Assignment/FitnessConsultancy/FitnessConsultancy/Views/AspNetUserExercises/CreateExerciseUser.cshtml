@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CreateExerciseUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateExerciseUser</h2>
+
+
+
+<form action="/AspNetUserExercises/CreateExerciseUser" method="post">
+    Exercise Name @Html.DropDownList("ExerciseId", "")
+
+    <ul style="list-style-type:none;">
+        @foreach (var user in ViewBag.AspNetUsers)
+        {
+            <li> <input type="checkbox" name="userIds" value="@user.Id" /> @user.Email</li>
+        }
+    </ul>
+
+    <input type="submit" value="Assign Exercises to Users" />
+
+</form>

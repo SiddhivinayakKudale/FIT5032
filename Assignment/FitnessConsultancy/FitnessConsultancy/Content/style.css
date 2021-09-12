@@ -1,0 +1,16 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bgimg {
+    /* The image used */
+    /* Full height */
+    height: 100%;
+    background-image: url('img/fitness.jpg');
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: aqua;
+}
