@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="AspNetUsers" EntityType="Model.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="Model.Store.Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserEvents" EntityType="Model.Store.UserEvents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Calendars" EntityType="Model.Store.Calendars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Exercises" EntityType="Model.Store.Exercises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserExercises" EntityType="Model.Store.UserExercises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Model.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Chats" EntityType="Model.Store.Chats" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AspNetUserUserEvent" Association="Model.Store.AspNetUserUserEvent">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="UserEvent" EntitySet="UserEvents" />
+    </AssociationSet>
+    <AssociationSet Name="EventUserEvent" Association="Model.Store.EventUserEvent">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="UserEvent" EntitySet="UserEvents" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserCalendar" Association="Model.Store.AspNetUserCalendar">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Calendar" EntitySet="Calendars" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserUserExercise" Association="Model.Store.AspNetUserUserExercise">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="UserExercise" EntitySet="UserExercises" />
+    </AssociationSet>
+    <AssociationSet Name="ExerciseUserExercise" Association="Model.Store.ExerciseUserExercise">
+      <End Role="Exercise" EntitySet="Exercises" />
+      <End Role="UserExercise" EntitySet="UserExercises" />
+    </AssociationSet>
+    <AssociationSet Name="ExerciseComments" Association="Model.Store.ExerciseComments">
+      <End Role="Exercise" EntitySet="Exercises" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserChat" Association="Model.Store.AspNetUserChat">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Chat" EntitySet="Chats" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventDesc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Latitude" Type="decimal" Nullable="false" />
+    <Property Name="Longitude" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserEvents">
+    <Key>
+      <PropertyRef Name="UserEventId" />
+    </Key>
+    <Property Name="UserEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="EventEventId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calendars">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="End" Type="datetime" Nullable="true" />
+    <Property Name="ThemeColor" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsFullDay" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Exercises">
+    <Key>
+      <PropertyRef Name="ExerciseId" />
+    </Key>
+    <Property Name="ExerciseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExerciseName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseDesc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseCalorieshr" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserExercises">
+    <Key>
+      <PropertyRef Name="UserExerciseId" />
+    </Key>
+    <Property Name="UserExerciseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ExerciseExerciseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="CommentedOn" Type="datetime" Nullable="false" />
+    <Property Name="ExerciseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chats">
+    <Key>
+      <PropertyRef Name="ChatId" />
+    </Key>
+    <Property Name="ChatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChatQuery" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ChatAnswer" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="AspNetUserUserEvent">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="UserEvent" Type="Model.Store.UserEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserEvent">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventUserEvent">
+    <End Role="Event" Type="Model.Store.Events" Multiplicity="1" />
+    <End Role="UserEvent" Type="Model.Store.UserEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="UserEvent">
+        <PropertyRef Name="EventEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserCalendar">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="Calendar" Type="Model.Store.Calendars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Calendar">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserUserExercise">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="UserExercise" Type="Model.Store.UserExercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserExercise">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExerciseUserExercise">
+    <End Role="Exercise" Type="Model.Store.Exercises" Multiplicity="1" />
+    <End Role="UserExercise" Type="Model.Store.UserExercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exercise">
+        <PropertyRef Name="ExerciseId" />
+      </Principal>
+      <Dependent Role="UserExercise">
+        <PropertyRef Name="ExerciseExerciseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExerciseComments">
+    <End Role="Exercise" Type="Model.Store.Exercises" Multiplicity="1" />
+    <End Role="Comments" Type="Model.Store.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exercise">
+        <PropertyRef Name="ExerciseId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="ExerciseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserChat">
+    <End Role="AspNetUser" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="Chat" Type="Model.Store.Chats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chat">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

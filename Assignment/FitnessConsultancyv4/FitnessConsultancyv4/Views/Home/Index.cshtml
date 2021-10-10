@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/chat.css" rel="stylesheet" />
+    <link href="~/Content/home.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- The App Section -->
+    <div class="container">
+        <div class="row">
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>Take your</b></h1>
+                <h1 class="large-font" style="color:MediumSeaGreen;"><b>training</b></h1>
+                <p><span style="font-size:36px">to the next level like a pro.</span>Courses are open to individuals and trainers seeking to improve their health and fitness through effective training and nutritional strategies.</p>
+                <button class="button">Access Exercises</button>
+            </div>
+            <div class="column-33">
+                @*<img src="/w3images/img_app.jpg" width="335" height="471">*@
+                <img src="~/Content/fitness1.jpeg" width="335" height="551" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Clarity Section -->
+    <div class="container" style="background-color:#f1f1f1">
+        <div class="row">
+            <div class="column-33">
+                @*<img src="/w3images/app5.jpg" alt="App" width="335" height="471">*@
+                <img src="~/Content/fitness2.jpg" alt="App" width="335" height="471" />
+            </div>
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>Push</b></h1>
+                <h1 class="large-font" style="color:red;"><b>Beyound Your Limits..</b></h1>
+                <p><span style="font-size:24px">Fuel your fitness journey.</span> At our consultation, we believe your fitness is essential. Making your overall physical and mental wellness a priority will melt away stress, decrease anxiety, and increase your overall positive energy levels, and you’ll feel healthy and strong throughout the year!</p>
+                <button class="button" style="background-color:red">Read More</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The App Section -->
+    <div class="container">
+        <div class="row">
+            <div class="column-66">
+                <h1 class="xlarge-font"><b> The world’s largest </b></h1>
+                <h1 class="large-font" style="color:MediumSeaGreen;"><b> hardcore training site.</b></h1>
+                <p>
+                    <span style="font-size:36px">The Complete Guide for prepping for a Competition.</span>
+                    Keeping a food diary helps you understand your habits and increases your likelihood of hitting your goals.
+                </p>
+                <button class="button">Access Exercises</button>
+            </div>
+            <div class="column-33">
+                @*<img src="/w3images/img_app.jpg" >*@
+                <img src="~/Content/fitness3.jpg" width="335" height="471" />
+            </div>
+        </div>
+    </div>
+
+
+    <button class="open-button" onclick="openForm()">Send An Query</button>
+
+    <div class="chat-popup" id="myForm">
+        <form action="/Chats/CreateChat" method="post" class="form-container">
+
+            <h1>Send Query</h1>
+
+            <label for="msg"><b>Message</b></label>
+            <textarea placeholder="Type your message here.." name="msg" required></textarea>          
+            <button type="submit" class="btn">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+
+        </form>
+        
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

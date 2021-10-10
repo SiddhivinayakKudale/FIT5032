@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/about.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p>We are the team who started with the Fitness Consultancy </p>
+        <p>We help people to guide and motivate them to stay healty and fit.</p>
+    </div>
+
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                @*<img src="/w3images/team1.jpg">*@
+                <img src="~/Content/ironman.jpg" alt="Russel" style="width: 100%; height:350px" />
+                <div class="container">
+                    <h2>ABM Russel</h2>
+                    <p class="title">Chairman</p>
+                    <p>“Creativity is just connecting things.”</p>
+                    <p>abm.russel@gmail.edu</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                @*<img src="/w3images/team2.jpg" >*@
+                <img src="~/Content/chris.jpg" alt="Mark" style="width:100%; height:350px"/>
+                <div class="container">
+                    <h2>Mark Creado</h2>
+                    <p class="title">President</p>
+                    <p> “Always deliver more than expected.”</p>
+                    <p>mark.creado@gmail.edu</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/sagar1.jpg" alt="sagar" style="width: 100%; height: 350px"/>
+                @*<img src="/w3images/team3.jpg" alt="sagar" style="width:100%">*@
+                <div class="container">
+                    <h2>Siddhivinayak Kudale</h2>
+                    <p class="title">General Manager and Trainer</p>
+                    <p>Stay Hungry, Stay Foolish</p>
+                    <p>sid@monash.edu</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

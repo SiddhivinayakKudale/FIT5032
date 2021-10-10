@@ -1,0 +1,51 @@
+﻿@model FitnessConsultancyv4.Models.Comments
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exercise.ExerciseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exercise.ExerciseName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

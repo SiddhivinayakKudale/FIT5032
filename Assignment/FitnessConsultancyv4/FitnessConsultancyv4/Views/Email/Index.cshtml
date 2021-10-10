@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script type="text/javascript">
+    var message = '@message';
+    if(message)
+        alert(message);
+</script>
+
+<fieldset>
+    @using (@Html.BeginForm("Index", "Email", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary()
+        // <input type="button" value="Send" class="btn" />
+        <br/>
+        <br/>
+        <input type="file" name="fileUploader" />
+        <br /><br />
+        <button type="submit" class="btn btn-primary">Send</button>
+    }
+</fieldset>
+
+

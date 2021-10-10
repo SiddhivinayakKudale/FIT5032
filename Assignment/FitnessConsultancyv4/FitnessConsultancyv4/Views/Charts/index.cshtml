@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Charts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+        window.onload = function ()
+        {
+            var result = @Html.Raw(ViewBag.DataPoints);
+            console.log(result)
+            var dataPoints = [];
+            var db = []
+        for(var i = 0; i < result.length; i++){
+            dataPoints.push({ x: result[i].category, y: result[i].calories});
+            }
+            var index = 10;
+            for (var i = 0; i < result.length; i++) {
+                var cal = parseInt(result[i].calories);
+                var cat = result[i].category;
+                db.push({ label: cat, y: cal });
+                index++;
+            }
+            console.log(db);
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Calories burned by Category"
+            },
+            data: [
+            {
+                type: "pie",
+                startAngle: 160,
+                toolTipContent: "<b>{x}</b>: {y}%",
+                indexLabel: "{x} - {y} Calories",
+                dataPoints: dataPoints,
+            }]
+        });
+
+
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+                animationEnabled: true,
+                title: {
+                    text: "Calories burned by Category"
+                },
+                data: [
+                    {
+                        type: "doughnut",
+                        startAngle: 160,
+                        toolTipContent: "<b>{x}</b>: {y}%",
+                        indexLabel: "{x} - {y} Calories",
+                        dataPoints: dataPoints,
+                    }]
+            });
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                theme: "light1", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: ""
+                },
+                axisY: {
+                    title: "Calories Burned"
+                },
+                axisX: {
+                    title:"Category"
+                },
+
+
+                data: [{
+                    type: "bar",
+                    dataPoints: db,
+                    }]
+            });
+
+            chart.render();
+            chart2.render();
+            chart3.render();
+     };
+
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </div>
+            <div class="col-sm-6">
+                <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<FitnessConsultancyv4.Models.Exercise>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("ExportHTML", "Exercises", FormMethod.Post))
+{
+    <input type="hidden" name="ExportData" />
+    <input type="submit" class="btn btn-primary" id="btnSubmit" value="Export to PDF" />
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("input[name='ExportData']").val($("#PrintPDF").html());
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-md-8">
+        <div id="PrintPDF">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExerciseName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExerciseDesc)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExerciseCategory)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExerciseCalorieshr)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExerciseName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExerciseDesc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExerciseCategory)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExerciseCalorieshr)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ExerciseId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ExerciseId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ExerciseId }) 
+                                   @* @Html.ActionLink(linkText: "View Rating", actionName: "ViewRating", routeValues: new { exerciseId = @item.ExerciseId })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@*@section Scripts {
+
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />*@

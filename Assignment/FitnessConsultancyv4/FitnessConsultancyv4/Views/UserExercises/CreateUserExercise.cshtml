@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>CreateUserExercise</h2>
+
+
+<form action="/UserExercises/CreateUserExercise" method="post">
+
+    User Name: @Html.DropDownList("Id", "")
+    <br /><br /><br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Assign Exercise</th>
+                <th>Exercise Name</th>
+                <th>Exercise Description</th>
+                <th>Exercise Category</th>
+            </tr>
+        </thead>
+
+
+
+        @foreach (var exercise in ViewBag.Exercises)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="ExerciseIds" value="@exercise.ExerciseId" />
+                </td>
+                <td>
+                    @exercise.ExerciseName
+                </td>
+                <td>
+                    @exercise.ExerciseDesc
+                </td>
+                <td>
+                    @exercise.ExerciseCategory
+                </td>
+            </tr>
+        }
+    </table>
+    <button type="submit" class="btn btn-primary">Assign Exercises to Users</button>
+</form>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+ $(document).ready(function () {
+ $('.table').DataTable();
+ });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />

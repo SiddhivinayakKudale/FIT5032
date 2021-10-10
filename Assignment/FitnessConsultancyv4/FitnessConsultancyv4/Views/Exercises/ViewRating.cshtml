@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "ViewRating";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewRating</h2>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+        window.onload = function ()
+        {
+            var result = @Html.Raw(ViewBag.DataPoints);
+            console.log("rsult is" + result)
+       
+            var dataPoints = [];
+            var db = [];
+            for(var i = 0; i < result.length; i++){
+                dataPoints.push({ x: result[i].exerciseId, y: result[i].rating});
+            }
+
+            var index = 10;
+            for (var i = 0; i < result.length; i++) {
+                var cal = parseInt(result[i].exerciseId);
+                var cat = result[i].rating;
+                db.push({ label: cal, y: cat });
+                index++;
+            }
+            console.log(db);
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Pie Chart"
+            },
+            data: [
+            {
+                type: "pie",
+                startAngle: 160,
+                toolTipContent: "<b>{x}</b>: {y}%",
+                indexLabel: "{x} - {y} Calories",
+                dataPoints: dataPoints,
+            }]
+        });
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "Bar graph"
+                },
+                axisY: {
+                    title: "Calories Burned"
+                },
+
+
+                data: [{
+                    type: "column",
+                    dataPoints: db,
+                    }]
+            });
+
+            chart.render();
+            chart2.render();
+     };
+
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

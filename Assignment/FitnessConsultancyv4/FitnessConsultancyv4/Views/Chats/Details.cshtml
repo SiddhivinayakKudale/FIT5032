@@ -1,0 +1,43 @@
+﻿@model FitnessConsultancyv4.Models.Chat
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Chat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ChatQuery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatQuery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChatAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ChatId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FitnessConsultancyv4.Models.Chat>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatQuery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatQuery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Answer Query", "Edit", new { id = item.ChatId }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
+        </td>
+    </tr>
+}
+
+</table>

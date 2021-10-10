@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "SendBulkEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@{ var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script type="text/javascript">
+    var message = '@message';
+    if(message)
+        alert(message);
+</script>
+
+<fieldset>
+    <legend>
+        Send NewsLetters to Users
+    </legend>
+    @using (@Html.BeginForm("SendBulkEmail", "NewsLetter", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary()
+        // <input type="button" value="Send" class="btn" />
+        <button type="submit" class="btn btn-primary">Send</button>
+        <br /><br /><br />
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Checkbox</th>
+                    <th>Emails</th>
+                </tr>
+                
+            </thead>
+
+
+
+            @foreach (var email in ViewBag.users)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="emails" value="@email.Email" id="emails" />
+                    </td>
+                    <td>
+                        @email.Email
+                    </td>
+
+                </tr>
+            }
+        </table>
+        <input type="file" name="fileUploader" />
+    }
+</fieldset>
+
+
+
