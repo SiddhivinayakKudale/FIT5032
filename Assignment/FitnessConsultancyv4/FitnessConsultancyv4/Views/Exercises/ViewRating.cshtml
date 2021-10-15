@@ -23,7 +23,7 @@
 
             var index = 10;
             for (var i = 0; i < result.length; i++) {
-                var cal = parseInt(result[i].exerciseId);
+                var cal = result[i].exerciseId;
                 var cat = result[i].rating;
                 db.push({ label: cal, y: cat });
                 index++;
@@ -38,8 +38,8 @@
             {
                 type: "pie",
                 startAngle: 160,
-                toolTipContent: "<b>{x}</b>: {y}%",
-                indexLabel: "{x} - {y} Calories",
+                toolTipContent: "<b>{x}</b>: {y}",
+                indexLabel: "{x} - {y} Rating",
                 dataPoints: dataPoints,
             }]
         });
@@ -51,7 +51,7 @@
                     text: "Bar graph"
                 },
                 axisY: {
-                    title: "Calories Burned"
+                    title: "Average Rating By Exercise"
                 },
 
 

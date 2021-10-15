@@ -45,7 +45,7 @@
         border: none;
         background: #f1f1f1;
         resize: none;
-        min-height: 200px;
+        min-height: 70px;
     }
 
         /* When the textarea gets focus, do something */
@@ -75,3 +75,5 @@
     .form-container .btn:hover, .open-button:hover {
         opacity: 1;
     }
+
+

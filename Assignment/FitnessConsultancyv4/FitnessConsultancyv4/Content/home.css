@@ -53,3 +53,34 @@ img {
     height: auto;
     max-width: 100%;
 }
+
+
+/*body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+}*/
+
+.container1 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+    

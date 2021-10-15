@@ -32,7 +32,14 @@ namespace FitnessConsultancyv4.Controllers
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        
+        public JsonResult GetAllEvents()
+        {
+            Entities dc = new Entities();
+            dc.Configuration.ProxyCreationEnabled = false;
+            var userId = User.Identity.GetUserId();
+            var events = dc.Calendars.Where(s => s.AspNetUserId == userId).ToList();
+            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
        /* public JsonResult GetAllEvents()
         {
             Entities dc = new Entities();

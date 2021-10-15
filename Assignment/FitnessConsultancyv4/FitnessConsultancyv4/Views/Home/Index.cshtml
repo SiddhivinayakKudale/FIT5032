@@ -1,4 +1,6 @@
-﻿@{
+﻿@*@model FitnessConsultancyv4.Models.Chat*@
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -62,23 +64,39 @@
         </div>
     </div>
 
+    
+
+
 
     <button class="open-button" onclick="openForm()">Send An Query</button>
+    <div>
+        <div class="chat-popup" id="myForm" style="overflow-y: scroll; max-height: 500px">
+            <form action="/Chats/CreateChat" method="post" class="form-container">
 
-    <div class="chat-popup" id="myForm">
-        <form action="/Chats/CreateChat" method="post" class="form-container">
+               
+                @foreach (var chat in ViewBag.chats)
+                {
+                    <div class="container1">
+                        <p>@chat.ChatQuery</p>
+                    </div>
 
-            <h1>Send Query</h1>
+                    <div class="container1 darker">
 
-            <label for="msg"><b>Message</b></label>
-            <textarea placeholder="Type your message here.." name="msg" required></textarea>          
-            <button type="submit" class="btn">Send</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                        <p> @chat.ChatAnswer</p>
 
-        </form>
-        
+                    </div>
+                }
+
+
+                <textarea placeholder="Type your message here.." name="msg" required></textarea>
+
+                <button type="submit" class="btn">Send</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+
+            </form>
+
+        </div>
     </div>
-
     <script>
         function openForm() {
             document.getElementById("myForm").style.display = "block";
