@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FitnessConsultancyv4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FitnessConsultancyv4.Controllers
 {
@@ -18,7 +19,16 @@ namespace FitnessConsultancyv4.Controllers
         public ActionResult Index()
         {
             var userEvents = db.UserEvents.Include(u => u.AspNetUser).Include(u => u.Event);
+           // string currentUserId = User.Identity.GetUserId();
+            //return View(db.UserEvents.Where(m => m.AspNetUserId == currentUserId).ToList());
             return View(userEvents.ToList());
+        }
+
+        public ActionResult DisplayUserEvents()
+        {
+            string currentUserId = User.Identity.GetUserId();
+            return View(db.UserEvents.Where(m => m.AspNetUserId == currentUserId).ToList()); 
+            //return View(db.Events.ToList());
         }
 
         // GET: UserEvents/Details/5

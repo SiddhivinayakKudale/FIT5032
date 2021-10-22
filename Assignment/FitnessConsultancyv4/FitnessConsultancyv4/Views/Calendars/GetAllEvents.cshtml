@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GetAllEvents</h2>
 
 <div id="calender"></div>
 
@@ -106,7 +105,7 @@
                 events = [];
                 $.ajax({
                     type: "GET",
-                    url: "/calendars/GetAllEvents",
+                    url: "/calendars/GetEvents",
                     success: function (data) {
                         $.each(data, function (i, v) {
                             events.push({
@@ -293,6 +292,7 @@
         })
     </script>
 }
+
 
 
 

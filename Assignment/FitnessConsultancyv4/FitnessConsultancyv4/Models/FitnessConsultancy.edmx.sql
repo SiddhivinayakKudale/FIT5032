@@ -219,7 +219,7 @@ ADD CONSTRAINT [FK_AspNetUserUserEvent]
     FOREIGN KEY ([AspNetUserId])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserUserEvent'
@@ -234,7 +234,7 @@ ADD CONSTRAINT [FK_EventUserEvent]
     FOREIGN KEY ([EventEventId])
     REFERENCES [dbo].[Events]
         ([EventId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EventUserEvent'
@@ -249,7 +249,7 @@ ADD CONSTRAINT [FK_AspNetUserCalendar]
     FOREIGN KEY ([AspNetUserId])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserCalendar'
@@ -264,7 +264,7 @@ ADD CONSTRAINT [FK_AspNetUserUserExercise]
     FOREIGN KEY ([AspNetUserId])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserUserExercise'
@@ -279,7 +279,7 @@ ADD CONSTRAINT [FK_ExerciseUserExercise]
     FOREIGN KEY ([ExerciseExerciseId])
     REFERENCES [dbo].[Exercises]
         ([ExerciseId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ExerciseUserExercise'
@@ -294,7 +294,7 @@ ADD CONSTRAINT [FK_ExerciseComments]
     FOREIGN KEY ([ExerciseId])
     REFERENCES [dbo].[Exercises]
         ([ExerciseId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ExerciseComments'
@@ -309,7 +309,7 @@ ADD CONSTRAINT [FK_AspNetUserChat]
     FOREIGN KEY ([AspNetUserId])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE cascade ON UPDATE cascade;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserChat'

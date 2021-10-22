@@ -136,7 +136,8 @@ namespace FitnessConsultancyv4.Controllers
                 db.SaveChanges();
             }
             //return View(aspNetUserExercises.ToList());
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("Index", "Exercises");
             // return View();
         }
 

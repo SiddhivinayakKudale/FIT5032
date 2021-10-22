@@ -618,6 +618,7 @@
     <Content Include="Views\Chats\Index.cshtml" />
     <Content Include="Views\CalendarsAdmin\Index.cshtml" />
     <Content Include="Views\Calendars\GetAllEvents.cshtml" />
+    <Content Include="Views\UserEvents\DisplayUserEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
